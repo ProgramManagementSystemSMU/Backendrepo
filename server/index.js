@@ -6,6 +6,7 @@ const bodyParser = require("body-parser");
 const teachersroute = require("./routes/teachers.routes");
 const coursesroute = require("./routes/courses.routes");
 const cohortsroute = require("./routes/cohorts.routes");
+const classroomroutes = require("./routes/classroom.routes");
 const app = express();
 
 //const EmployeeRoute = require('./routes/employee')
@@ -16,7 +17,8 @@ mongoose.connect("mongodb://localhost:27017/pmgsystem", {
 });
 
 app.use(cors());
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 8080;
+console.log(PORT)
 
 app.use(express.json());
 app.use(morgan("dev"));
@@ -27,10 +29,14 @@ app.use("./uploads", express.static("uploads"));
 app.use("/", teachersroute);
 app.use("/", coursesroute);
 app.use("/", cohortsroute);
+app.use('/classrooms', classroomroutes);
+
 
 //app.use('/api/employee', EmployeeRoute)
 app.use("/api", authRoute);
 
+
 app.listen(PORT, () => {
   console.log("Sever Running");
 });
+
