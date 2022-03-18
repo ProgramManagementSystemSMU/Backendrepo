@@ -5,6 +5,7 @@ const bodyParser = require("body-parser");
 const teachersroute = require("./Routes/teachers.routes");
 const coursesroute = require("./Routes/courses.routes");
 const cohortsroute = require("./Routes/cohorts.routes");
+const boxroute = require("./Routes/boxes.routes")
 const app = express();
 
 mongoose.connect("mongodb://localhost:27017/pmgsystem", {
@@ -18,7 +19,8 @@ app.use(express.json());
 app.use("/", teachersroute);
 app.use("/", coursesroute);
 app.use("/", cohortsroute);
+app.use("/", boxroute);
 
 app.listen(PORT, () => {
-  console.log("Sever Running");
+  console.log('Server Running ');
 });
