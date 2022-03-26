@@ -15,9 +15,13 @@ const userSchema = new Schema({ // mongo works with schema (entity)
   },
   password: {
     type: String, 
+  },
+  role: {
+    type: String,
+    default:'user'
   }
 }, {
-    collection: 'category'
+    collection: 'user'
   })
 
   const User = mongoose.model('User', userSchema)

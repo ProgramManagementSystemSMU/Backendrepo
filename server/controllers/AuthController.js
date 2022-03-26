@@ -45,7 +45,7 @@ const login = (req, res, next) => {
             });
           }
           if (result) {
-            let token = jwt.sign({ name: user.name }, "povpoc541", {
+            let token = jwt.sign({ role: user.role ,name: user.name }, "povpoc541", {
               expiresIn: "6h",
             });
             res.json({
