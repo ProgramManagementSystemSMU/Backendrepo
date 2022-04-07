@@ -18,14 +18,16 @@ import ErrorPage from "./pages/ErrorPage";
 // import Scheduel from "./components/Scheduel";
 import Testmui from "./components/Testmui";
 import Scheduel from "./components/Scheduel";
+import ToPdf from "./components/ToPdf";
 
 function App() {
   return (
     <div className="App">
       {/* <Testmui /> */}
-      <Scheduel />
+      {/* <Scheduel /> */}
       {/* <AddProfessor /> */}
       {/* <Scheduel /> */}
+      <ToPdf />
 
       {/* <Router>
         <NavBar />
@@ -40,6 +42,7 @@ function App() {
           <Route path="/AddProfessor" element={<AddProfessor />} />
         </Routes>
       </Router> */}
+      {/* <ToPdf /> */}
       {/* <ImageCard /> */}
       {/* <AddCourse /> */}
       {/* <AddCohorts /> */}

@@ -15,6 +15,7 @@
     "@mui/material": "^5.3.0",
     "@mui/styles": "^5.4.1",
     "@mui/x-data-grid": "^5.4.0",
+    "@react-pdf/renderer": "^2.1.1",
     "@reduxjs/toolkit": "^1.7.1",
     "@syncfusion/ej2-react-buttons": "^19.4.53",
     "@syncfusion/ej2-react-grids": "^19.4.53",
@@ -22,21 +23,28 @@
     "@testing-library/jest-dom": "^5.16.1",
     "@testing-library/react": "^12.1.2",
     "@testing-library/user-event": "^13.5.0",
+    "assert": "^2.0.0",
     "axios": "^0.25.0",
+    "browserify-zlib": "^0.2.0",
+    "buffer": "^6.0.3",
     "date-fns": "^2.28.0",
+    "jspdf": "^2.5.1",
     "moment": "^2.29.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-redux": "^7.2.6",
     "react-router-dom": "^6.2.1",
     "react-scripts": "5.0.0",
+    "react-to-print": "^2.14.5",
     "redux": "^4.1.2",
+    "stream-browserify": "^3.0.0",
+    "util": "^0.12.4",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
+    "start": "react-app-rewired start",
+    "build": "react-app-rewired build",
+    "test": "react-app-rewired test",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
@@ -56,5 +64,9 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "process": "^0.11.10",
+    "react-app-rewired": "^2.2.1"
   }
 }
