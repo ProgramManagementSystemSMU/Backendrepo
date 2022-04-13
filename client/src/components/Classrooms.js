@@ -1,27 +1,20 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { DataGrid } from "@mui/x-data-grid";
 import "./CourseTable.css";
 import Axios from "axios";
 import Stack from "@mui/material/Stack";
 import Button from "@mui/material/Button";
-import { Link } from "react-router-dom";
-
 import { styled } from "@mui/system";
+import { Link } from "react-router-dom";
 import TablePaginationUnstyled from "@mui/base/TablePaginationUnstyled";
 
-function createData(id, name, email, courses, freeday) {
-  return { id, name, email, courses, freeday };
+function createData(classname, location, size, typeofclassrooms) {
+  return { classname, location, size, typeofclassrooms };
 }
 
-const rows = [
-  createData(
-    101,
-    "Mahmoud Mansouri",
-    "mahmoud.mansouri@medtech.tn",
-    "ALL CS Courses",
-    "Vendredi"
-  ),
-].sort((a, b) => (a.calories < b.calories ? -1 : 1));
+const rows = [createData("mb02", "Medtech", 20, "Lab")].sort((a, b) =>
+  a.calories < b.calories ? -1 : 1
+);
 
 const blue = {
   200: "#A5D8FF",
@@ -137,15 +130,14 @@ const CustomTablePagination = styled(TablePaginationUnstyled)(
       }
       `
 );
+export default function Classrooms() {
+  const [classroomsList, setClassroomsList] = useState([]);
 
-export default function ProfessorCourse() {
   useEffect(() => {
-    Axios.get("http://localhost:5000/api/getteachers").then((response) => {
-      setProfessorList(response.data);
+    Axios.get("http://localhost:5000/api/getclassrooms").then((response) => {
+      setClassroomsList(response.data);
     });
   }, []);
-
-  const [professorList, setProfessorList] = useState([]);
 
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
@@ -162,7 +154,6 @@ export default function ProfessorCourse() {
     setRowsPerPage(parseInt(event.target.value, 10));
     setPage(0);
   };
-
   return (
     <div>
       <div className="tableau">
@@ -170,34 +161,30 @@ export default function ProfessorCourse() {
           <table aria-label="custom pagination table">
             <thead>
               <tr>
-                <th>Id</th>
-                <th>Name</th>
-                <th>Email</th>
-                <th>Course</th>
-                <th>Free day</th>
+                <th>Class Name</th>
+                <th>Location</th>
+                <th>Size</th>
+                <th>Type of Classroom</th>
               </tr>
             </thead>
             <tbody>
               {(rowsPerPage > 0
-                ? professorList.slice(
+                ? classroomsList.slice(
                     page * rowsPerPage,
                     page * rowsPerPage + rowsPerPage
                   )
-                : professorList
+                : classroomsList
               ).map((row) => (
-                <tr key={row.Id}>
-                  <td>{row.Id}</td>
+                <tr key={row.ClassName}>
+                  <td>{row.ClassName}</td>
                   <td style={{ width: 120 }} align="right">
-                    {row.Name}
+                    {row.Location}
                   </td>
                   <td style={{ width: 120 }} align="right">
-                    {row.Email}
+                    {row.Size}
                   </td>
                   <td style={{ width: 120 }} align="right">
-                    {row.Course}
-                  </td>
-                  <td style={{ width: 120 }} align="right">
-                    {row.Freeday}
+                    {row.TypeOfClassrooms}
                   </td>
                 </tr>
               ))}
@@ -232,8 +219,8 @@ export default function ProfessorCourse() {
             </tfoot>
           </table>
           <Stack spacing={8} sx={{ padding: "50px" }} direction="row">
-            <Link to="/AddProfessor">
-              <Button variant="contained">Add Proffesors</Button>
+            <Link to="/AddClassrooms">
+              <Button variant="contained">Add Classrooms</Button>
             </Link>
           </Stack>
         </Root>
@@ -241,7 +228,3 @@ export default function ProfessorCourse() {
     </div>
   );
 }
-
-// export default function ProfessorCourse() {
-//   return <div></div>;
-// }

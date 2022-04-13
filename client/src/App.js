@@ -19,6 +19,13 @@ import ErrorPage from "./pages/ErrorPage";
 import Testmui from "./components/Testmui";
 import Scheduel from "./components/Scheduel";
 import ToPdf from "./components/ToPdf";
+import Sidebar from "./components/sidebar/Sidebar";
+import Navbar from "./components/navbar/Navbar";
+import Classrooms from "./components/Classrooms";
+import Boxs from "./components/Boxs";
+import AddClassrooms from "./components/AddClassrooms";
+import AddBoxs from "./components/AddBoxs";
+import Booking from "./pages/Booking";
 
 function App() {
   return (
@@ -27,21 +34,37 @@ function App() {
       {/* <Scheduel /> */}
       {/* <AddProfessor /> */}
       {/* <Scheduel /> */}
-      <ToPdf />
+      {/* <ToPdf /> */}
 
-      {/* <Router>
-        <NavBar />
-        <Routes>
-          <Route path="/" element={<Admin />} />
-          <Route path="/Courses" element={<Courses />} />
-          <Route path="/Teachers" element={<Teachers />} />
-          <Route path="*" element={<ErrorPage />} />
-          <Route path="/Cohorts" element={<Cohorts />} />
-          <Route path="/AddCohorts" element={<AddCohorts />} />
-          <Route path="/AddCourses" element={<AddCourse />} />
-          <Route path="/AddProfessor" element={<AddProfessor />} />
-        </Routes>
-      </Router> */}
+      <Router>
+        {/* <NavBar /> */}
+        <div className="home">
+          {/* <h1 className="title">Lama dev</h1> */}
+          <Sidebar />
+          <div className="homeContainer">
+            <Navbar />
+
+            {/* <Sidebar />
+        <Navbar /> */}
+            <Routes>
+              <Route path="/" element={<Admin />} />
+              <Route path="/Courses" element={<Courses />} />
+              <Route path="/Teachers" element={<Teachers />} />
+              <Route path="*" element={<ErrorPage />} />
+              <Route path="/Cohorts" element={<Cohorts />} />
+              <Route path="/AddCohorts" element={<AddCohorts />} />
+              <Route path="/AddCourses" element={<AddCourse />} />
+              <Route path="/AddProfessor" element={<AddProfessor />} />
+              <Route path="/Scheduel" element={<ToPdf />} />
+              <Route path="/Classrooms" element={<Classrooms />} />
+              <Route path="/Boxs" element={<Boxs />} />
+              <Route path="/AddClassrooms" element={<AddClassrooms />} />
+              <Route path="/AddBoxs" element={<AddBoxs />} />
+              <Route path="/Bookings" element={<Booking />} />
+            </Routes>
+          </div>
+        </div>
+      </Router>
       {/* <ToPdf /> */}
       {/* <ImageCard /> */}
       {/* <AddCourse /> */}

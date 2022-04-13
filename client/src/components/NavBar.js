@@ -45,7 +45,11 @@ const NavBar = () => {
                 variant="h6"
                 noWrap
                 component="div"
-                sx={{ mr: 2, display: { xs: "none", md: "flex" } }}
+                sx={{
+                  mr: 2,
+                  display: { xs: "none", md: "flex" },
+                  color: "#fff",
+                }}
               >
                 SMU
               </Typography>
@@ -130,6 +134,14 @@ const NavBar = () => {
                   sx={{ my: 2, color: "white", display: "block" }}
                 >
                   Professors
+                </Button>
+              </Link>
+              <Link to="/Scheduel">
+                <Button
+                  onClick={handleCloseNavMenu}
+                  sx={{ my: 2, color: "white", display: "block" }}
+                >
+                  Schedule
                 </Button>
               </Link>
               {/* ))} */}
