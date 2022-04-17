@@ -52,7 +52,7 @@ router.post("/api/booking", async (req, res) => {
               <b>You have booked a place in the makerSpace on the ${date} from ${timein} to ${timeout}.</b>
               <br/>
               <br/>
-              <b>Ya lina ya khra</b>
+        
               <br/>
               <br/>
               <b> Please try to come in time and to keep your place clean after you leave. </b>

@@ -10,6 +10,7 @@ import BookmarkAddSharpIcon from "@mui/icons-material/BookmarkAddSharp";
 import AppSettingsAltSharpIcon from "@mui/icons-material/AppSettingsAltSharp";
 import ChatBubbleSharpIcon from "@mui/icons-material/ChatBubbleSharp";
 import LogoutSharpIcon from "@mui/icons-material/LogoutSharp";
+import AccountBalanceIcon from "@mui/icons-material/AccountBalance";
 import BoyIcon from "@mui/icons-material/Boy";
 import PaidIcon from "@mui/icons-material/Paid";
 import { Link } from "react-router-dom";
@@ -71,12 +72,20 @@ function Sidebar() {
           <li>
             <BookmarkAddSharpIcon className="icon" />
             <Link to="Bookings">
-              <span>Booking</span>
+              <span>Box Booking</span>
+            </Link>
+          </li>
+          <li>
+            <AccountBalanceIcon className="icon" />
+            <Link to="Bookings">
+              <span>Class Booking</span>
             </Link>
           </li>
           <li>
             <ChatBubbleSharpIcon className="icon" />
-            <span>Chat</span>
+            <Link to="/Chat">
+              <span>Chat</span>
+            </Link>
           </li>
           <li>
             <PaidIcon className="icon" />

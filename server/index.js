@@ -9,11 +9,34 @@ const cohortsroute = require("./Routes/cohorts.routes");
 const classroomsroute = require("./Routes/classrooms.routes");
 const bookingroute = require("./Routes/booking.routes");
 const boxroute = require("./Routes/boxs.routes");
+const adminroute = require("./Routes/admin.routes");
 const app = express();
 const { Server } = require("socket.io");
 const server = http.createServer(app);
 
-const io = new Server();
+const io = new Server(server, {
+  cors: {
+    origin: "http://localhost:3000",
+    methods: ["GET", "POST"],
+  },
+});
+
+io.on("connection", (socket) => {
+  console.log(socket.id);
+
+  socket.on("join_room", (data) => {
+    socket.join(data);
+    console.log(`User with ID: ${socket.id} joined room:${data} `);
+  });
+
+  socket.on("send_message", (data) => {
+    socket.to(data.room).emit("receive_message", data);
+  });
+
+  socket.on("disconnect", () => {
+    console.log(`User Disconnected: ${socket.id}`);
+  });
+});
 
 mongoose.connect("mongodb://localhost:27017/pmgsystem", {
   useNewUrlParser: true,
@@ -30,6 +53,7 @@ app.use("/", classroomsroute);
 app.use("/", cohortsroute);
 app.use("/", boxroute);
 app.use("/", bookingroute);
+app.use("/", adminroute);
 
 server.listen(PORT, () => {
   console.log("Server Running");

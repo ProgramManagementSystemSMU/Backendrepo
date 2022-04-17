@@ -26,6 +26,8 @@ import Boxs from "./components/Boxs";
 import AddClassrooms from "./components/AddClassrooms";
 import AddBoxs from "./components/AddBoxs";
 import Booking from "./pages/Booking";
+import Chat from "./components/Chat";
+import Login from "./pages/Login";
 
 function App() {
   return (
@@ -35,17 +37,13 @@ function App() {
       {/* <AddProfessor /> */}
       {/* <Scheduel /> */}
       {/* <ToPdf /> */}
-
+      {/* <Login /> */}
       <Router>
-        {/* <NavBar /> */}
         <div className="home">
-          {/* <h1 className="title">Lama dev</h1> */}
           <Sidebar />
           <div className="homeContainer">
             <Navbar />
 
-            {/* <Sidebar />
-        <Navbar /> */}
             <Routes>
               <Route path="/" element={<Admin />} />
               <Route path="/Courses" element={<Courses />} />
@@ -61,6 +59,7 @@ function App() {
               <Route path="/AddClassrooms" element={<AddClassrooms />} />
               <Route path="/AddBoxs" element={<AddBoxs />} />
               <Route path="/Bookings" element={<Booking />} />
+              <Route path="/Chat" element={<Chat />} />
             </Routes>
           </div>
         </div>
