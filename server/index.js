@@ -10,6 +10,9 @@ const classroomsroute = require("./Routes/classrooms.routes");
 const bookingroute = require("./Routes/booking.routes");
 const boxroute = require("./Routes/boxs.routes");
 const adminroute = require("./Routes/admin.routes");
+const officehoursroute = require("./Routes/officehours.routes");
+const classbookingroute = require("./Routes/classbooking.routes");
+const studentroute = require("./Routes/student.routes");
 const app = express();
 const { Server } = require("socket.io");
 const server = http.createServer(app);
@@ -54,6 +57,9 @@ app.use("/", cohortsroute);
 app.use("/", boxroute);
 app.use("/", bookingroute);
 app.use("/", adminroute);
+app.use("/", classbookingroute);
+app.use("/", officehoursroute);
+app.use("/", studentroute);
 
 server.listen(PORT, () => {
   console.log("Server Running");

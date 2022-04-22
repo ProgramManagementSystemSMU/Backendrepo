@@ -11,6 +11,7 @@ import AppSettingsAltSharpIcon from "@mui/icons-material/AppSettingsAltSharp";
 import ChatBubbleSharpIcon from "@mui/icons-material/ChatBubbleSharp";
 import LogoutSharpIcon from "@mui/icons-material/LogoutSharp";
 import AccountBalanceIcon from "@mui/icons-material/AccountBalance";
+import DesktopMacIcon from "@mui/icons-material/DesktopMac";
 import BoyIcon from "@mui/icons-material/Boy";
 import PaidIcon from "@mui/icons-material/Paid";
 import { Link } from "react-router-dom";
@@ -77,10 +78,11 @@ function Sidebar() {
           </li>
           <li>
             <AccountBalanceIcon className="icon" />
-            <Link to="Bookings">
+            <Link to="ClassBookings">
               <span>Class Booking</span>
             </Link>
           </li>
+
           <li>
             <ChatBubbleSharpIcon className="icon" />
             <Link to="/Chat">
@@ -89,7 +91,9 @@ function Sidebar() {
           </li>
           <li>
             <PaidIcon className="icon" />
+            <Link to="/unispec">
             <span>Payement</span>
+            </Link>
           </li>
           <li>
             <AppSettingsAltSharpIcon className="icon" />

@@ -1,18 +1,12 @@
 import React from "react";
-import Button from "@mui/material/Button";
-import ButtonGroup from "@mui/material/ButtonGroup";
-
+import Home from "../pages/Home";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 function Testmui() {
   return (
     <div>
-      <ButtonGroup
-        variant="contained"
-        aria-label="outlined primary button group"
-      >
-        <Button href="">One</Button>
-        <Button>Two</Button>
-        <Button>Three</Button>
-      </ButtonGroup>
+      <Routes>
+        <Route path="/home" element={<Home />} />
+      </Routes>
     </div>
   );
 }

@@ -32,4 +32,22 @@ router.get("/api/getteachers", async (req, res) => {
   });
 });
 
+router.delete("/deleteteachers/:id", async (req, res) => {
+  const id = req.params.id;
+  await Teacher.findByIdAndRemove(id).exec();
+});
+
+router.put("/updateteachers", async (req, res) => {
+  const newName = req.body.newId;
+  const id = req.body.id;
+  try {
+    await Teacher.findById(id, (error, teacherToUpdate) => {
+      teacherToUpdate.Name = newName;
+      teacherToUpdate.save();
+    });
+  } catch (err) {
+    console.log(err);
+  }
+});
+
 module.exports = router;

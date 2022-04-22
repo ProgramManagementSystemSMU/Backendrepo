@@ -27,4 +27,9 @@ router.get("/api/getcohorts", async (req, res) => {
   });
 });
 
+router.delete("/deletecohorts/:id", async (req, res) => {
+  const id = req.params.id;
+  await Cohorts.findByIdAndRemove(id).exec();
+});
+
 module.exports = router;

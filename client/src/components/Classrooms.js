@@ -154,6 +154,10 @@ export default function Classrooms() {
     setRowsPerPage(parseInt(event.target.value, 10));
     setPage(0);
   };
+
+  const deleteClassrooms = (id) => {
+    Axios.delete(`http://localhost:5000/deleteclassrooms/${id}`);
+  };
   return (
     <div>
       <div className="tableau">
@@ -165,6 +169,7 @@ export default function Classrooms() {
                 <th>Location</th>
                 <th>Size</th>
                 <th>Type of Classroom</th>
+                <th>buttons</th>
               </tr>
             </thead>
             <tbody>
@@ -185,6 +190,15 @@ export default function Classrooms() {
                   </td>
                   <td style={{ width: 120 }} align="right">
                     {row.TypeOfClassrooms}
+                  </td>
+                  <td style={{ width: 120 }} align="right">
+                    <button
+                      onClick={() => {
+                        deleteClassrooms(row._id);
+                      }}
+                    >
+                      delete
+                    </button>
                   </td>
                 </tr>
               ))}

@@ -156,6 +156,10 @@ function Boxs() {
     setPage(0);
   };
 
+  const deleteBoxs = (id) => {
+    Axios.delete(`http://localhost:5000/deleteboxs/${id}`);
+  };
+
   return (
     <div>
       <div>
@@ -166,6 +170,7 @@ function Boxs() {
                 <tr>
                   <th>Box Name</th>
                   <th>Location</th>
+                  <th>buttons</th>
                 </tr>
               </thead>
               <tbody>
@@ -180,6 +185,15 @@ function Boxs() {
                     <td>{row.BoxName}</td>
                     <td style={{ width: 120 }} align="right">
                       {row.Location}
+                    </td>
+                    <td style={{ width: 120 }} align="right">
+                      <button
+                        onClick={() => {
+                          deleteBoxs(row._id);
+                        }}
+                      >
+                        delete
+                      </button>
                     </td>
                   </tr>
                 ))}

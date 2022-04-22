@@ -81,7 +81,7 @@ function Booking() {
             <FormInput
               id={3}
               name="Phone"
-              type="text"
+              type="number"
               placeholder="Phone"
               label="Phone"
               required={true}

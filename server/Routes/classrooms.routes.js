@@ -31,4 +31,9 @@ router.get("/api/getclassrooms", async (req, res) => {
   });
 });
 
+router.delete("/deleteclassrooms/:id", async (req, res) => {
+  const id = req.params.id;
+  await Classrooms.findByIdAndRemove(id).exec();
+});
+
 module.exports = router;

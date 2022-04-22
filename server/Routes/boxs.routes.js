@@ -27,4 +27,9 @@ router.get("/api/getboxs", async (req, res) => {
   });
 });
 
+router.delete("/deleteboxs/:id", async (req, res) => {
+  const id = req.params.id;
+  await Boxs.findByIdAndRemove(id).exec();
+});
+
 module.exports = router;

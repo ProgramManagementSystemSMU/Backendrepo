@@ -25,6 +25,9 @@ const BookingSchema = new mongoose.Schema({
   Reason: {
     type: String,
   },
+  BoxName: {
+    type: String,
+  },
 });
 
 const Booking = mongoose.model("Bookings", BookingSchema);

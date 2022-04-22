@@ -146,7 +146,7 @@ export default function ProfessorCourse() {
   }, []);
 
   const [professorList, setProfessorList] = useState([]);
-
+  const [newName, setNewName] = useState("");
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
 
@@ -163,6 +163,18 @@ export default function ProfessorCourse() {
     setPage(0);
   };
 
+  const deleteTeachers = (id) => {
+    Axios.delete(`http://localhost:5000/deleteteachers/${id}`);
+  };
+
+  const updateTeachers = (id) => {
+    const newName = prompt("Enter new name: ");
+    Axios.put("http://localhost:5000/updateteachers", {
+      newName: newName,
+      id: id,
+    });
+  };
+
   return (
     <div>
       <div className="tableau">
@@ -175,6 +187,7 @@ export default function ProfessorCourse() {
                 <th>Email</th>
                 <th>Course</th>
                 <th>Free day</th>
+                <th>buttons</th>
               </tr>
             </thead>
             <tbody>
@@ -198,6 +211,22 @@ export default function ProfessorCourse() {
                   </td>
                   <td style={{ width: 120 }} align="right">
                     {row.Freeday}
+                  </td>
+                  <td style={{ width: 120 }} align="right">
+                    <button
+                      onClick={() => {
+                        deleteTeachers(row._id);
+                      }}
+                    >
+                      delete
+                    </button>
+                    <button
+                      onClick={() => {
+                        updateTeachers(row._id);
+                      }}
+                    >
+                      Update
+                    </button>
                   </td>
                 </tr>
               ))}

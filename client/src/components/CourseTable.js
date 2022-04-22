@@ -169,6 +169,10 @@ export default function CourseTable() {
     setPage(0);
   };
 
+  const deleteCourse = (id) => {
+    Axios.delete(`http://localhost:5000/deletecourses/${id}`);
+  };
+
   return (
     <div className="tableau">
       <Root sx={{ width: 500, maxWidth: "100%", padding: "50px" }}>
@@ -181,6 +185,7 @@ export default function CourseTable() {
               <th>Cohorts</th>
               <th>Prerequesites</th>
               <th>Teachers</th>
+              <th>buttons</th>
             </tr>
           </thead>
           <tbody>
@@ -207,6 +212,15 @@ export default function CourseTable() {
                 </td>
                 <td style={{ width: 120 }} align="right">
                   {row.Teachers}
+                </td>
+                <td style={{ width: 120 }} align="right">
+                  <button
+                    onClick={() => {
+                      deleteCourse(row._id);
+                    }}
+                  >
+                    delete
+                  </button>
                 </td>
               </tr>
             ))}
