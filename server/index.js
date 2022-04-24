@@ -13,6 +13,7 @@ const adminroute = require("./Routes/admin.routes");
 const officehoursroute = require("./Routes/officehours.routes");
 const classbookingroute = require("./Routes/classbooking.routes");
 const studentroute = require("./Routes/student.routes");
+const cronfin = require("./cron");
 const app = express();
 const { Server } = require("socket.io");
 const server = http.createServer(app);
@@ -60,6 +61,8 @@ app.use("/", adminroute);
 app.use("/", classbookingroute);
 app.use("/", officehoursroute);
 app.use("/", studentroute);
+
+cronfin;
 
 server.listen(PORT, () => {
   console.log("Server Running");

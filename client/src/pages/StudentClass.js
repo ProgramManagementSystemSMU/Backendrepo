@@ -1,11 +1,16 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Axios from "axios";
-import FormInput from "../components/FormInput";
 import "./booking.css";
-import Sidebar from "../components/sidebar/Sidebar";
-import Navbar from "../components/navbar/Navbar";
+import FormInput from "../components/FormInput";
 
-export default function Officehours() {
+function StudentClass() {
+  const [classroomsList, setClassroomsList] = useState([]);
+
+  useEffect(() => {
+    Axios.get("http://localhost:5000/api/getclassrooms").then((response) => {
+      setClassroomsList(response.data);
+    });
+  }, []);
   const [values, setValues] = useState({
     username: "",
     email: "",
@@ -18,43 +23,40 @@ export default function Officehours() {
   const [StudentID, setStudentID] = useState("");
   const [Phone, setPhone] = useState("");
   const [Date, setDate] = useState("");
+  const [Timein, setTimein] = useState("");
+  const [Timeout, setTimeout] = useState("");
   const [Reason, setReason] = useState("");
-  const [Duration, setDuration] = useState("");
+  const [Classname, setClassName] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
   };
 
   const addToList = () => {
-    Axios.post("http://localhost:5000/api/officehourbooking", {
+    Axios.post("http://localhost:5000/api/classbooking", {
       FullName: FullName,
       Email: Email,
       StudentID: StudentID,
       Phone: Phone,
       Date: Date,
-      Duration: Duration,
+      Timein: Timein,
+      Timeout: Timeout,
       Reason: Reason,
+      ClassName: Classname,
     });
   };
 
   const onChange = (e) => {
     setValues({ ...values, [e.target.name]: e.target.value });
   };
+  console.log(Classname);
   return (
     <div>
       <div>
         <div className="booking">
           <div className="formpad">
             <form className="forms" onSubmit={handleSubmit}>
-              <h1 className="hone">Book office hours</h1>
-              {/* {inputs.map((input) => (
-            //   <FormInput
-            //     key={input.id}
-            //     {...input}
-            //     value={values[input.name]}
-            //     onChange={onChange}
-            //   />
-            // ))} */}
+              <h1 className="hone">Book a class </h1>
               <FormInput
                 key={1}
                 name="Fullname"
@@ -81,6 +83,17 @@ export default function Officehours() {
                 }}
               />
               <FormInput
+                id={3}
+                name="Phone"
+                type="text"
+                placeholder="Phone"
+                label="Phone"
+                required={true}
+                onChange={(event) => {
+                  setPhone(event.target.value);
+                }}
+              />{" "}
+              <FormInput
                 id={4}
                 name="StudentID"
                 type="text"
@@ -88,18 +101,6 @@ export default function Officehours() {
                 label="StudentID"
                 onChange={(event) => {
                   setStudentID(event.target.value);
-                }}
-              />
-
-              <FormInput
-                id={3}
-                name="Phone number"
-                type="number"
-                placeholder="Phone number"
-                label="Phone number"
-                required={true}
-                onChange={(event) => {
-                  setPhone(event.target.value);
                 }}
               />
               <FormInput
@@ -113,15 +114,24 @@ export default function Officehours() {
                 }}
               />
               <FormInput
-                id={3}
-                name="Duration"
-                type="number"
-                placeholder="Duration"
-                label="Duration"
-                required={true}
+                id={6}
+                name="Timein"
+                type="time"
+                placeholder="Timein"
+                label="Timein"
                 onChange={(event) => {
-                  setDuration(event.target.value);
+                  setTimein(event.target.value);
                 }}
+              />{" "}
+              <FormInput
+                id={7}
+                name="Timeout"
+                type="time"
+                placeholder="Timeout"
+                onChange={(event) => {
+                  setTimeout(event.target.value);
+                }}
+                label="Timeout"
               />
               <FormInput
                 id={8}
@@ -133,6 +143,30 @@ export default function Officehours() {
                 }}
                 label="Reason"
               />
+              <label for="classroom">Choose a box:</label>
+              <select
+                name="classroom"
+                id="classroom"
+                onChange={(e) => {
+                  setClassName(e.target.value);
+                }}
+              >
+                <option value="">choose a class</option>
+                {classroomsList.map((cla) => {
+                  return <option value={cla.ClassName}>{cla.ClassName}</option>;
+                })}
+                {/* <option value="volvo">Volvo</option> */}
+              </select>
+              {/* <FormInput
+                id={8}
+                name="Class Name"
+                type="textarea"
+                placeholder="Class Name"
+                onChange={(event) => {
+                  setClassName(event.target.value);
+                }}
+                label="Class Name"
+              /> */}
               <button className="btnform" onClick={addToList}>
                 Submit
               </button>
@@ -143,3 +177,5 @@ export default function Officehours() {
     </div>
   );
 }
+
+export default StudentClass;

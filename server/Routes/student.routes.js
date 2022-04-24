@@ -36,7 +36,7 @@ router.post("/api/addmedtechstudent", async (req, res) => {
   const amountpaied = req.body.AmountPaied;
   const remainingamount = req.body.RemainingAmount;
   const finaldeadline = req.body.FinalDeadline;
-
+  const email = req.body.Email;
   const Medtech = new MedtechStudent(
     {
       FullName: fullname,
@@ -44,6 +44,7 @@ router.post("/api/addmedtechstudent", async (req, res) => {
       AmountPaied: amountpaied,
       RemainingAmount: remainingamount,
       FinalDeadline: finaldeadline,
+      Email: email,
     },
     { timestamps: false }
   );
@@ -62,13 +63,14 @@ router.post("/api/addlcistudent", async (req, res) => {
   const amountpaied = req.body.AmountPaied;
   const remainingamount = req.body.RemainingAmount;
   const finaldeadline = req.body.FinalDeadline;
-
+  const email = req.body.Email;
   const Lci = new LciStudent({
     FullName: fullname,
     AmountToPay: amounttopay,
     AmountPaied: amountpaied,
     RemainingAmount: remainingamount,
     FinalDeadline: finaldeadline,
+    Email: email,
   });
 
   try {

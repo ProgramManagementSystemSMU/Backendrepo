@@ -25,7 +25,7 @@ const ClassBookingSchema = new mongoose.Schema({
   Reason: {
     type: String,
   },
-  Classname: {
+  ClassName: {
     type: String,
   },
 });

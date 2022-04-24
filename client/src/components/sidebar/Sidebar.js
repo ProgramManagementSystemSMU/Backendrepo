@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import "./sidebar.scss";
 import DashboardIcon from "@mui/icons-material/Dashboard";
 import PersonOutlinedIcon from "@mui/icons-material/PersonOutlineOutlined";
@@ -15,8 +15,11 @@ import DesktopMacIcon from "@mui/icons-material/DesktopMac";
 import BoyIcon from "@mui/icons-material/Boy";
 import PaidIcon from "@mui/icons-material/Paid";
 import { Link } from "react-router-dom";
+import { DarkModeContext } from "../context/darkModeContext";
 
 function Sidebar() {
+  const { dispatch } = useContext(DarkModeContext);
+
   return (
     <div className="sidebar">
       <div className="top">
@@ -28,7 +31,7 @@ function Sidebar() {
           <p className="title">MAIN</p>
           <li>
             <DashboardIcon className="icon" />
-            <Link to="/">
+            <Link to="/Admin">
               <span>Dashboard</span>
             </Link>
           </li>
@@ -66,19 +69,19 @@ function Sidebar() {
           <p className="title"> FEATURES</p>
           <li>
             <CalendarTodaySharpIcon className="icon" />
-            <Link to="Scheduel">
+            <Link to="/Scheduel">
               <span>Schueling</span>
             </Link>
           </li>
           <li>
             <BookmarkAddSharpIcon className="icon" />
-            <Link to="Bookings">
+            <Link to="/Bookings">
               <span>Box Booking</span>
             </Link>
           </li>
           <li>
             <AccountBalanceIcon className="icon" />
-            <Link to="ClassBookings">
+            <Link to="/ClassBookings">
               <span>Class Booking</span>
             </Link>
           </li>
@@ -92,7 +95,7 @@ function Sidebar() {
           <li>
             <PaidIcon className="icon" />
             <Link to="/unispec">
-            <span>Payement</span>
+              <span>Payement</span>
             </Link>
           </li>
           <li>
@@ -101,14 +104,21 @@ function Sidebar() {
           </li>
           <li>
             <LogoutSharpIcon className="icon" />
-            <span>Logout</span>
+            <Link to="/">
+              <span>Logout</span>
+            </Link>
           </li>
         </ul>
       </div>
       <div className="bottom">
-        <div className="colorOption"></div>
-        <div className="colorOption"></div>
-        <div className="colorOption"></div>
+        <div
+          className="colorOption"
+          onClick={() => dispatch({ type: "LIGHT" })}
+        ></div>
+        <div
+          className="colorOption"
+          onClick={() => dispatch({ type: "DARK" })}
+        ></div>
       </div>
     </div>
   );

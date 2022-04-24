@@ -1,6 +1,6 @@
 import React from "react";
 import { makeStyles } from "@mui/styles";
-import { AppBar, IconButton, Toolbar, Typography } from "@mui/material";
+import { AppBar, IconButton, Toolbar, Typography, Button } from "@mui/material";
 import SortIcon from "@mui/icons-material/Sort";
 import { Link } from "react-router-dom";
 
@@ -34,6 +34,11 @@ const useStyles = makeStyles((theme) => ({
   title: {
     color: "#fff",
     fontSize: "3rem",
+    paddingRight: "50px",
+  },
+  button: {
+    paddingRight: "30px",
+    paddingLeft: "30px",
   },
 }));
 export default function Header() {
@@ -46,12 +51,12 @@ export default function Header() {
             <Toolbar className={classes.appnarWrapper}>
               <h1 className={classes.appbarTitle}>SMU WEBSITE</h1>
               <Typography variant="h4" className={classes.appbarTitle}>
-                <Link to="/Bookings" className="linkss">
+                <Link to="/studbox" className="linkss">
                   Box Booking
                 </Link>
               </Typography>
               <Typography variant="h4" className={classes.appbarTitle}>
-                <Link to="/ClassBookings" className="linkss">
+                <Link to="/studclass" className="linkss">
                   Class Booking
                 </Link>
               </Typography>
@@ -60,6 +65,13 @@ export default function Header() {
                   Office Hour Booking
                 </Link>
               </Typography>
+              <Button
+                variant="contained"
+                color="success"
+                className={classes.button}
+              >
+                <Link to="/login">Login</Link>
+              </Button>
             </Toolbar>
           </AppBar>
         </div>

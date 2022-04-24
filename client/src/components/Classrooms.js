@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { DataGrid } from "@mui/x-data-grid";
 import "./CourseTable.css";
 import Axios from "axios";
@@ -7,6 +7,9 @@ import Button from "@mui/material/Button";
 import { styled } from "@mui/system";
 import { Link } from "react-router-dom";
 import TablePaginationUnstyled from "@mui/base/TablePaginationUnstyled";
+import Sidebar from "./sidebar/Sidebar";
+import Navbar from "./navbar/Navbar";
+import { DarkModeContext } from "./context/darkModeContext";
 
 function createData(classname, location, size, typeofclassrooms) {
   return { classname, location, size, typeofclassrooms };
@@ -132,6 +135,7 @@ const CustomTablePagination = styled(TablePaginationUnstyled)(
 );
 export default function Classrooms() {
   const [classroomsList, setClassroomsList] = useState([]);
+  const { darkMode } = useContext(DarkModeContext);
 
   useEffect(() => {
     Axios.get("http://localhost:5000/api/getclassrooms").then((response) => {
@@ -159,85 +163,96 @@ export default function Classrooms() {
     Axios.delete(`http://localhost:5000/deleteclassrooms/${id}`);
   };
   return (
-    <div>
-      <div className="tableau">
-        <Root sx={{ width: 500, maxWidth: "100%", padding: "50px" }}>
-          <table aria-label="custom pagination table">
-            <thead>
-              <tr>
-                <th>Class Name</th>
-                <th>Location</th>
-                <th>Size</th>
-                <th>Type of Classroom</th>
-                <th>buttons</th>
-              </tr>
-            </thead>
-            <tbody>
-              {(rowsPerPage > 0
-                ? classroomsList.slice(
-                    page * rowsPerPage,
-                    page * rowsPerPage + rowsPerPage
-                  )
-                : classroomsList
-              ).map((row) => (
-                <tr key={row.ClassName}>
-                  <td>{row.ClassName}</td>
-                  <td style={{ width: 120 }} align="right">
-                    {row.Location}
-                  </td>
-                  <td style={{ width: 120 }} align="right">
-                    {row.Size}
-                  </td>
-                  <td style={{ width: 120 }} align="right">
-                    {row.TypeOfClassrooms}
-                  </td>
-                  <td style={{ width: 120 }} align="right">
-                    <button
-                      onClick={() => {
-                        deleteClassrooms(row._id);
-                      }}
-                    >
-                      delete
-                    </button>
-                  </td>
-                </tr>
-              ))}
+    <div className={darkMode ? "app dark" : "app"}>
+      <div className="home">
+        <Sidebar />
+        <div className="homeContainer">
+          <Navbar />
+          <div className="tableau">
+            <Root sx={{ width: 800, maxWidth: "100%", padding: "50px" }}>
+              <table aria-label="custom pagination table">
+                <thead>
+                  <tr>
+                    <th>Class Name</th>
+                    <th>Location</th>
+                    <th>Size</th>
+                    <th>Type of Classroom</th>
+                    <th>buttons</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {(rowsPerPage > 0
+                    ? classroomsList.slice(
+                        page * rowsPerPage,
+                        page * rowsPerPage + rowsPerPage
+                      )
+                    : classroomsList
+                  ).map((row) => (
+                    <tr key={row.ClassName}>
+                      <td>{row.ClassName}</td>
+                      <td style={{ width: 120 }} align="right">
+                        {row.Location}
+                      </td>
+                      <td style={{ width: 120 }} align="right">
+                        {row.Size}
+                      </td>
+                      <td style={{ width: 120 }} align="right">
+                        {row.TypeOfClassrooms}
+                      </td>
+                      <td style={{ width: 120 }} align="right">
+                        <button
+                          onClick={() => {
+                            deleteClassrooms(row._id);
+                          }}
+                        >
+                          delete
+                        </button>
+                      </td>
+                    </tr>
+                  ))}
 
-              {emptyRows > 0 && (
-                <tr style={{ height: 41 * emptyRows }}>
-                  <td colSpan={3} />
-                </tr>
-              )}
-            </tbody>
-            <tfoot>
-              <tr>
-                <CustomTablePagination
-                  rowsPerPageOptions={[5, 10, 25, { label: "All", value: -1 }]}
-                  colSpan={10}
-                  count={rows.length}
-                  rowsPerPage={rowsPerPage}
-                  page={page}
-                  componentsProps={{
-                    select: {
-                      "aria-label": "rows per page",
-                    },
-                    actions: {
-                      showFirstButton: true,
-                      showLastButton: true,
-                    },
-                  }}
-                  onPageChange={handleChangePage}
-                  onRowsPerPageChange={handleChangeRowsPerPage}
-                />
-              </tr>
-            </tfoot>
-          </table>
-          <Stack spacing={8} sx={{ padding: "50px" }} direction="row">
-            <Link to="/AddClassrooms">
-              <Button variant="contained">Add Classrooms</Button>
-            </Link>
-          </Stack>
-        </Root>
+                  {emptyRows > 0 && (
+                    <tr style={{ height: 41 * emptyRows }}>
+                      <td colSpan={3} />
+                    </tr>
+                  )}
+                </tbody>
+                <tfoot>
+                  <tr>
+                    <CustomTablePagination
+                      rowsPerPageOptions={[
+                        5,
+                        10,
+                        25,
+                        { label: "All", value: -1 },
+                      ]}
+                      colSpan={10}
+                      count={rows.length}
+                      rowsPerPage={rowsPerPage}
+                      page={page}
+                      componentsProps={{
+                        select: {
+                          "aria-label": "rows per page",
+                        },
+                        actions: {
+                          showFirstButton: true,
+                          showLastButton: true,
+                        },
+                      }}
+                      onPageChange={handleChangePage}
+                      onRowsPerPageChange={handleChangeRowsPerPage}
+                    />
+                  </tr>
+                </tfoot>
+              </table>
+              <Stack spacing={8} sx={{ padding: "50px" }} direction="row">
+                <Link to="/AddClassrooms">
+                  <Button variant="contained">Add Classrooms</Button>
+                </Link>
+              </Stack>
+            </Root>
+          </div>
+        </div>
       </div>
     </div>
   );

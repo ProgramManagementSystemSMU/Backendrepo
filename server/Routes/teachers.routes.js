@@ -7,12 +7,14 @@ router.post("/api/addteachers", async (req, res) => {
   const teacherEmail = req.body.Email;
   const teacherCourse = req.body.Course;
   const teacherFreeDay = req.body.Freeday;
+  const teacherRoomId = req.body.RoomId;
   const teacher = new Teacher({
     Id: teacherId,
     Name: teacherName,
     Email: teacherEmail,
     Course: teacherCourse,
     Freeday: teacherFreeDay,
+    RoomId: teacherRoomId,
   });
 
   try {
@@ -38,10 +40,10 @@ router.delete("/deleteteachers/:id", async (req, res) => {
 });
 
 router.put("/updateteachers", async (req, res) => {
-  const newName = req.body.newId;
+  const newName = req.body.newName;
   const id = req.body.id;
   try {
-    await Teacher.findById(id, (error, teacherToUpdate) => {
+    await Teacher.findByIdAndUpdate(id, (error, teacherToUpdate) => {
       teacherToUpdate.Name = newName;
       teacherToUpdate.save();
     });

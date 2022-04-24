@@ -16,6 +16,9 @@ const TeacherSchema = new mongoose.Schema({
   Freeday: {
     type: String,
   },
+  RoomId: {
+    type: Number,
+  },
 });
 
 const Teacher = mongoose.model("Teacher", TeacherSchema);

@@ -4,6 +4,7 @@ import jwt_decode from "jwt-decode";
 import "./login.css";
 import Admin from "./Admin";
 import App from "../App";
+import { Link } from "react-router-dom";
 
 export default function Login() {
   const [user, setUser] = useState(null);
@@ -70,31 +71,32 @@ export default function Login() {
 
   return (
     <div>
-      <div className="container">
+      <div className="nocontainer">
         {user ? (
-          <div className="home">
-            <span>
-              Welcome to the <b>{user.isAdmin ? "admin" : "user"}</b> dashboard
-              <b>{user.username}</b>.
-            </span>
-            <span>Delete Users:</span>
-            <button className="deleteButton">Delete John</button>
-            <button className="deleteButton">Delete Jane</button>
-            {error && (
-              <span className="error">
-                You are not allowed to delete this user!
-              </span>
-            )}
-            {success && (
-              <span className="success">
-                User has been deleted successfully...
-              </span>
-            )}
-          </div>
+          // <div className="home">
+          //   <span>
+          //     Welcome to the <b>{user.isAdmin ? "admin" : "user"}</b> dashboard
+          //     <b>{user.username}</b>.
+          //   </span>
+          //   <span>Delete Users:</span>
+          //   <button className="deleteButton">Delete John</button>
+          //   <button className="deleteButton">Delete Jane</button>
+          //   {error && (
+          //     <span className="error">
+          //       You are not allowed to delete this user!
+          //     </span>
+          //   )}
+          //   {success && (
+          //     <span className="success">
+          //       User has been deleted successfully...
+          //     </span>
+          //   )}
+          // </div>
+          <App />
         ) : (
           <div className="login">
             <form onSubmit={handleSubmit} className="formlogin">
-              <span className="formTitle">Lama Login</span>
+              <span className="formTitle">Admin Login</span>
               <input
                 className="inputlogin"
                 type="text"
@@ -108,7 +110,7 @@ export default function Login() {
                 onChange={(e) => setPassword(e.target.value)}
               />
               <button type="submit" className="submitButton">
-                Login
+                <Link to="/Admin">Login</Link>
               </button>
             </form>
           </div>

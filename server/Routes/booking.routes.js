@@ -11,6 +11,7 @@ router.post("/api/booking", async (req, res) => {
   const timein = req.body.Timein;
   const timeout = req.body.Timeout;
   const reason = req.body.Reason;
+  const boxsname = req.body.BoxName;
 
   const Bookings = new Booking({
     FullName: fullname,
@@ -21,6 +22,7 @@ router.post("/api/booking", async (req, res) => {
     Timein: timein,
     Timeout: timeout,
     Reason: reason,
+    BoxName: boxsname,
   });
 
   try {

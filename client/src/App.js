@@ -38,6 +38,7 @@ import LciStudent from "./components/LciStudent";
 import AddLci from "./components/AddLci";
 import AddMedtech from "./components/AddMedtech";
 import AddMsb from "./components/AddMsb";
+import Loginadmin from "./pages/Loginadmin";
 
 function App() {
   return (
@@ -56,8 +57,8 @@ function App() {
         <div className="homeContainer">
           <Navbar />
 
-          <Routes>
-            <Route path="/" element={<Admin />} />
+          {/* <Routes>
+            <Route path="/Admin" element={<Admin />} />
             <Route path="/Courses" element={<Courses />} />
             <Route path="/Teachers" element={<Teachers />} />
             <Route path="*" element={<ErrorPage />} />
@@ -80,8 +81,10 @@ function App() {
             <Route path="/lcistudent" element={<LciStudent />} />
             <Route path="/addlci" element={<AddLci />} />
             <Route path="/addmedtech" element={<AddMedtech />} />
-            <Route path="/addmsb" element={<AddMsb />} />
-          </Routes>
+            <Route path="/addmsb" element={<AddMsb />} /> */}
+          {/* <Route path="/login" element={<Loginadmin />} /> */}
+          {/* <Route path="/home" element={<Home />} /> */}
+          {/* </Routes> */}
         </div>
       </div>
       {/* </Router> */}

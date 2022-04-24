@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { DataGrid } from "@mui/x-data-grid";
 import "./CourseTable.css";
 import Axios from "axios";
@@ -7,6 +7,9 @@ import Button from "@mui/material/Button";
 import { styled } from "@mui/system";
 import { Link } from "react-router-dom";
 import TablePaginationUnstyled from "@mui/base/TablePaginationUnstyled";
+import Sidebar from "./sidebar/Sidebar";
+import Navbar from "./navbar/Navbar";
+import { DarkModeContext } from "./context/darkModeContext";
 
 function createData(classname, location, size, typeofclassrooms) {
   return { classname, location, size, typeofclassrooms };
@@ -133,7 +136,7 @@ const CustomTablePagination = styled(TablePaginationUnstyled)(
 
 function Boxs() {
   const [boxList, setBoxList] = useState([]);
-
+  const { darkMode } = useContext(DarkModeContext);
   useEffect(() => {
     Axios.get("http://localhost:5000/api/getboxs").then((response) => {
       setBoxList(response.data);
@@ -161,83 +164,89 @@ function Boxs() {
   };
 
   return (
-    <div>
-      <div>
-        <div className="tableau">
-          <Root sx={{ width: 500, maxWidth: "100%", padding: "50px" }}>
-            <table aria-label="custom pagination table">
-              <thead>
-                <tr>
-                  <th>Box Name</th>
-                  <th>Location</th>
-                  <th>buttons</th>
-                </tr>
-              </thead>
-              <tbody>
-                {(rowsPerPage > 0
-                  ? boxList.slice(
-                      page * rowsPerPage,
-                      page * rowsPerPage + rowsPerPage
-                    )
-                  : boxList
-                ).map((row) => (
-                  <tr key={row.BoxName}>
-                    <td>{row.BoxName}</td>
-                    <td style={{ width: 120 }} align="right">
-                      {row.Location}
-                    </td>
-                    <td style={{ width: 120 }} align="right">
-                      <button
-                        onClick={() => {
-                          deleteBoxs(row._id);
-                        }}
-                      >
-                        delete
-                      </button>
-                    </td>
-                  </tr>
-                ))}
+    <div className={darkMode ? "app dark" : "app"}>
+      <div className="home">
+        <Sidebar />
+        <div className="homeContainer">
+          <Navbar />
+          <div>
+            <div className="tableau">
+              <Root sx={{ width: 500, maxWidth: "100%", padding: "50px" }}>
+                <table aria-label="custom pagination table">
+                  <thead>
+                    <tr>
+                      <th>Box Name</th>
+                      <th>Location</th>
+                      <th>buttons</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {(rowsPerPage > 0
+                      ? boxList.slice(
+                          page * rowsPerPage,
+                          page * rowsPerPage + rowsPerPage
+                        )
+                      : boxList
+                    ).map((row) => (
+                      <tr key={row.BoxName}>
+                        <td>{row.BoxName}</td>
+                        <td style={{ width: 120 }} align="right">
+                          {row.Location}
+                        </td>
+                        <td style={{ width: 120 }} align="right">
+                          <button
+                            onClick={() => {
+                              deleteBoxs(row._id);
+                            }}
+                          >
+                            delete
+                          </button>
+                        </td>
+                      </tr>
+                    ))}
 
-                {emptyRows > 0 && (
-                  <tr style={{ height: 41 * emptyRows }}>
-                    <td colSpan={3} />
-                  </tr>
-                )}
-              </tbody>
-              <tfoot>
-                <tr>
-                  <CustomTablePagination
-                    rowsPerPageOptions={[
-                      5,
-                      10,
-                      25,
-                      { label: "All", value: -1 },
-                    ]}
-                    colSpan={10}
-                    count={rows.length}
-                    rowsPerPage={rowsPerPage}
-                    page={page}
-                    componentsProps={{
-                      select: {
-                        "aria-label": "rows per page",
-                      },
-                      actions: {
-                        showFirstButton: true,
-                        showLastButton: true,
-                      },
-                    }}
-                    onPageChange={handleChangePage}
-                    onRowsPerPageChange={handleChangeRowsPerPage}
-                  />
-                </tr>
-              </tfoot>
-            </table>
-            <Stack spacing={8} sx={{ padding: "50px" }} direction="row">
-              <Link to="/AddBoxs">
-                <Button variant="contained">Add Box</Button>
-              </Link>
-            </Stack>
-          </Root>
+                    {emptyRows > 0 && (
+                      <tr style={{ height: 41 * emptyRows }}>
+                        <td colSpan={3} />
+                      </tr>
+                    )}
+                  </tbody>
+                  <tfoot>
+                    <tr>
+                      <CustomTablePagination
+                        rowsPerPageOptions={[
+                          5,
+                          10,
+                          25,
+                          { label: "All", value: -1 },
+                        ]}
+                        colSpan={10}
+                        count={rows.length}
+                        rowsPerPage={rowsPerPage}
+                        page={page}
+                        componentsProps={{
+                          select: {
+                            "aria-label": "rows per page",
+                          },
+                          actions: {
+                            showFirstButton: true,
+                            showLastButton: true,
+                          },
+                        }}
+                        onPageChange={handleChangePage}
+                        onRowsPerPageChange={handleChangeRowsPerPage}
+                      />
+                    </tr>
+                  </tfoot>
+                </table>
+                <Stack spacing={8} sx={{ padding: "50px" }} direction="row">
+                  <Link to="/AddBoxs">
+                    <Button variant="contained">Add Box</Button>
+                  </Link>
+                </Stack>
+              </Root>
+            </div>
+          </div>
         </div>
       </div>
     </div>

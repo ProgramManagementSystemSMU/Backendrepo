@@ -11,7 +11,7 @@ router.post("/api/classbooking", async (req, res) => {
   const timein = req.body.Timein;
   const timeout = req.body.Timeout;
   const reason = req.body.Reason;
-  const classname = req.body.Classname;
+  const classname = req.body.ClassName;
 
   const ClassBookings = new ClassBooking({
     FullName: fullname,
@@ -22,7 +22,7 @@ router.post("/api/classbooking", async (req, res) => {
     Timein: timein,
     Timeout: timeout,
     Reason: reason,
-    Classname: classname,
+    ClassName: classname,
   });
 
   try {

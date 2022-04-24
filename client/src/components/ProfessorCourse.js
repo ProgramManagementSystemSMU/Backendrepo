@@ -187,6 +187,7 @@ export default function ProfessorCourse() {
                 <th>Email</th>
                 <th>Course</th>
                 <th>Free day</th>
+                <th>Room Id</th>
                 <th>buttons</th>
               </tr>
             </thead>
@@ -213,6 +214,9 @@ export default function ProfessorCourse() {
                     {row.Freeday}
                   </td>
                   <td style={{ width: 120 }} align="right">
+                    {row.RoomId}
+                  </td>
+                  <td style={{ width: 120 }} align="right">
                     <button
                       onClick={() => {
                         deleteTeachers(row._id);
@@ -220,13 +224,13 @@ export default function ProfessorCourse() {
                     >
                       delete
                     </button>
-                    <button
+                    {/* <button
                       onClick={() => {
                         updateTeachers(row._id);
                       }}
                     >
                       Update
-                    </button>
+                    </button> */}
                   </td>
                 </tr>
               ))}

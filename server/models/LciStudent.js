@@ -4,6 +4,9 @@ const LciStudentSchema = new mongoose.Schema({
   FullName: {
     type: String,
   },
+  Email: {
+    type: String,
+  },
 
   AmountToPay: {
     type: Number,
