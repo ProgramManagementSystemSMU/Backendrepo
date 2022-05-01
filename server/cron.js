@@ -34,12 +34,12 @@ const emailfin = cron.schedule("* 59 23 * * *", function () {
             let info = await transporter.sendMail({
               from: '"Mahmoud Mansouri " <mahmoudmansouri2001@gmail.com>',
               to: `mahmoud.mansouri@medtech.tn`,
-              subject: "User information",
+              subject: "Deadline Payment",
               text: "Si ça marche je suis vraiment trop fort",
-              html: `<b>Dear lah,</b>
+              html: `<b>Dear Student,</b>
                           <br/>
                           <br/>
-                          <b>Walah lak 3adi  </b>
+                          <b>The deadline payment is over due  </b>
                           <br/>
                           <br/>
                     
@@ -99,12 +99,12 @@ const emailfin = cron.schedule("* 59 23 * * *", function () {
             let info = await transporter.sendMail({
               from: '"Mahmoud Mansouri " <mahmoudmansouri2001@gmail.com>',
               to: `mahmoud.mansouri@medtech.tn`,
-              subject: "User information",
+              subject: "Deadline Payment",
               text: "Si ça marche je suis vraiment trop fort",
-              html: `<b>Dear lah,</b>
+              html: `<b>Dear Student,</b>
                           <br/>
                           <br/>
-                          <b>Walah lak 3adi  </b>
+                          <b>The deadline payment is over due  </b>
                           <br/>
                           <br/>
                     
@@ -117,7 +117,7 @@ const emailfin = cron.schedule("* 59 23 * * *", function () {
                           <br/>
                           <br/>
                           
-                          <b>Admin </b>  
+                          <b>Admin </b>   
                           `,
             });
 
@@ -163,12 +163,12 @@ const emailfin = cron.schedule("* 59 23 * * *", function () {
             let info = await transporter.sendMail({
               from: '"Mahmoud Mansouri " <mahmoudmansouri2001@gmail.com>',
               to: `mahmoud.mansouri@medtech.tn`,
-              subject: "User information",
+              subject: "Deadline Payment",
               text: "Si ça marche je suis vraiment trop fort",
-              html: `<b>Dear lah,</b>
+              html: `<b>Dear Student,</b>
                           <br/>
                           <br/>
-                          <b>Walah lak 3adi  </b>
+                          <b>The deadline payment is over due  </b>
                           <br/>
                           <br/>
                     
@@ -181,7 +181,7 @@ const emailfin = cron.schedule("* 59 23 * * *", function () {
                           <br/>
                           <br/>
                           
-                          <b>Admin </b>  
+                          <b>Admin </b>   
                           `,
             });
 

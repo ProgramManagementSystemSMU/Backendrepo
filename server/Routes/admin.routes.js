@@ -12,9 +12,9 @@ const users = [
   },
   {
     id: "2",
-    username: "jane",
-    password: "Jane0908",
-    isAdmin: false,
+    username: "mah",
+    password: "Mah2412",
+    isAdmin: true,
   },
 ];
 

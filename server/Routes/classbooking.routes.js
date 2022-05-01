@@ -46,12 +46,12 @@ router.post("/api/classbooking", async (req, res) => {
       let info = await transporter.sendMail({
         from: '"Mahmoud Mansouri " <mahmoudmansouri2001@gmail.com>',
         to: `${email}`,
-        subject: "User information",
+        subject: "Class booking",
         text: "Si ça marche je suis vraiment trop fort",
         html: `<b>Dear ${fullname},</b>
               <br/>
               <br/>
-              <b>You have booked a place in the makerSpace on the ${date} from ${timein} to ${timeout}.</b>
+              <b>You have booked a class on the date ${date} from ${timein} to ${timeout}.</b>
               <br/>
               <br/>
         
